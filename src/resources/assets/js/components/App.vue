@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <grid></grid>
+        <grid> </grid>
     </div>
 </template>
 
