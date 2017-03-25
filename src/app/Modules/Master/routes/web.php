@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/master', 'ObatController@index');
+Route::get('/barang', 'ObatController@index');

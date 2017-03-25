@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/pendaftaran', function () {
-    return public_path('ss');
+Route::get('/', function () {
+    return 'ini pendaftaran';
 });

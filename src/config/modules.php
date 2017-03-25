@@ -3,6 +3,7 @@
 return [
     'modules' => [
         'Master',
-        'Pendaftaran'
+        'Pendaftaran',
+        'Home'
     ]
 ];

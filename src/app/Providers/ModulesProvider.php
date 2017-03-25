@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use View;
 
 class ModulesProvider extends ServiceProvider
 {
@@ -19,12 +20,23 @@ class ModulesProvider extends ServiceProvider
         foreach ($modules['modules'] as $key => $value) {
             $nameSpace = 'App\Modules\\'.$value.'\Controllers';
             if (file_exists(base_path('app/Modules/'. $value . '/routes/web.php'))) {
-                  $this->mapWebRoutes($nameSpace, base_path('app/Modules/'. $value . '/routes/web.php'));
+                  $this->mapWebRoutes(
+                    $nameSpace, 
+                    base_path('app/Modules/'. $value . '/routes/web.php'),
+                    'web',
+                    strtolower($value)
+                    );
             }
 
             if (file_exists(base_path('app/Modules/'. $value . '/routes/api.php'))) {
-                  $this->mapWebRoutes($nameSpace, base_path('app/Modules/'. $value . '/routes/web.php'),'api');
+                  $this->mapWebRoutes(
+                    $nameSpace, 
+                    base_path('app/Modules/'. $value . '/routes/web.php'),
+                    'api',
+                    strtolower($value)
+                    );
             }
+            View::addLocation(base_path('app/Modules/'. $value . '/views'));
         }
     }
 
@@ -35,10 +47,11 @@ class ModulesProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes($namespace = null, $group = null, $middleware = 'web')
+    protected function mapWebRoutes($namespace = null, $group = null, $middleware = 'web', $prefix = '')
     {
         Route::middleware($middleware)
              ->namespace($namespace)
+             ->prefix($prefix)
              ->group($group);
     }
 
