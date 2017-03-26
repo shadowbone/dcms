@@ -7,7 +7,10 @@
 <div id="app">
 
 </div>
-{!! Html::script('assets/js/scripts.min.js') !!}
 {!! Html::script('assets/js/main.js') !!}
+{!! Html::script('assets/js/scripts.min.js') !!}
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

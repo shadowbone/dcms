@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-  Hallow
+  	Hallow
+  	<button id="test-button">TEST AJAX</button>
   </div>
 </template>
 

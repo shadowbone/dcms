@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return 'ahay';
+    return view('login.login');
 });
