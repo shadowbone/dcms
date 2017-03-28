@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-<!--     <router-link to="/home">Home</router-link>
+    <router-link to="/home">Home</router-link>
     <router-link to="/about">About</router-link>
     <p>
       Welcome to your Vue.js app!
     </p>
-    <router-view></router-view> -->
+    <transition name="slide-fade">
+    <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -23,5 +25,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.slide-fade-enter-active {
+  transition: all .8s ease;
+}
+.slide-fade-leave-active {
+  transition: all .0s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

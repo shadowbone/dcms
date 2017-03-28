@@ -43,14 +43,14 @@
                         <fieldset>
                           <label class="block clearfix">
                             <span class="block input-icon input-icon-right">
-                              <input type="text" name="username" class="form-control" placeholder="Username" value="{!! old('username') !!}" required/>
+                              <input type="text" name="email" class="form-control" placeholder="Email" value="{!! old('email') !!}" required/>
                               <i class="ace-icon fa fa-user"></i>
                               <div style="color:red;font-size: 12px;">
                               </div>
                             </span>
-                                @if ($errors->has('username'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                           </label>
@@ -62,14 +62,18 @@
                               <div style="color:red;font-size: 12px;">
                               </div>
                             </span>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
                           </label>
 
                           <div class="space"></div>
 
                           <div class="clearfix">
                             <label class="inline">
-                              <input type="checkbox" class="ace" />
-                              <span class="lbl"> Remember Me</span>
+                              <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                             </label>
 
                             <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
