@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-  	Hallow
-  	<button id="test-button">TEST AJAX</button>
+<!--     <router-link to="/home">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <p>
+      Welcome to your Vue.js app!
+    </p>
+    <router-view></router-view> -->
   </div>
 </template>
 
