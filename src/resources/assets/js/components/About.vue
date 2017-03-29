@@ -1,14 +1,27 @@
 <template>
   <div id="about">
-    <table border="4">
-    	<thead>
-    		<tr>
-    			<th>Nama</th>
-    			<th>User Name</th>
-    			<th>Action</th>
-    		</tr>
-    	</thead>
-    </table>
+    <div class="row">
+      <div class="col-xs-12"> 
+        <div class="row">
+          <div class="widget-box">
+            <div class="widget-header">
+              <h4 class="widget-title">
+              <i class="ace-icon fa fa-database"></i>
+                About
+              </h4>
+            </div>
+            <br>
+            <div class="box-header with-border">
+              <form class="form-horizontal no-margin form-filter" >
+              </form>
+            </div>
+            <div class="hr hr-dotted"></div>
+            <div>
+            </div>
+          </div>      
+        </div><!-- PAGE CONTENT ENDS -->
+      </div><!-- /.col -->
+    </div>
   </div>
 </template>
 <script>
