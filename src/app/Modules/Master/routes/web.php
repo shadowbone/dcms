@@ -11,4 +11,8 @@
 |
 */
 
-Route::get('/barang', 'ObatController@index');
+Route::get('/barang', function () {
+	return response()->json([
+		'message' => 'Hello Word'
+	],422);
+});
