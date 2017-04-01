@@ -1030,7 +1030,7 @@ export default {
   },
   methods : {
     prepare : function() {
-      this.$http.get('http://localhost:7070/master/barang').
+      this.$http.get(HostParent + '/master/barang').
       then((response) => {
 
       },(error) => {

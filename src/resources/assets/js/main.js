@@ -9,6 +9,8 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
+window.HostParent = window.location.origin;
+
     /* eslint-disable no-new */
     // Define some components
     var Foo = Vue.extend({
