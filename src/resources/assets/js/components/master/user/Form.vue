@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div id="form">
     <div class="row">
       <div class="col-xs-12"> 
         <div class="row">
@@ -1019,10 +1019,10 @@
 </template>
 <script>
 export default {
-  name: 'about',
+  name: 'form',
   data : () => {
     return {
-      message : 'About'
+      message : 'Tambah User'
     }
   },
   mounted(){

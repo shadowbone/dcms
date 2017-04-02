@@ -5,11 +5,12 @@ import About from './components/About.vue';
 import Home from './components/Home.vue';
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+require('./components/master/master')
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
-window.HostParent = window.location.origin;
+window._HostParent = window.location.origin;
 
     /* eslint-disable no-new */
     // Define some components
@@ -30,7 +31,7 @@ window.HostParent = window.location.origin;
       linkActiveClass: 'active-class',
         routes: [
 	    { path: '/about', component: About },
-	    { path: '/home', component: Home }
+	    { path: '/home', component: indexUser }
 	  ]
     })
 
