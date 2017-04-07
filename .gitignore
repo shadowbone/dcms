@@ -5,3 +5,4 @@ src/vendor
 Homestead.json
 Homestead.yaml
 src/.env
+assets/js*.js
