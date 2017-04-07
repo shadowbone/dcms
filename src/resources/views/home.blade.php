@@ -437,7 +437,8 @@
         </div>
     </div>
 </div><!-- /.main-content -->
-{!! Html::script('assets/js/main.js') !!}
 {!! Html::script('assets/js/scripts.min.js') !!}
+{!! Html::script('assets/js/dcms.min.js') !!}
+{!! Html::script('assets/js/main.js') !!}
 </body>
 </html>

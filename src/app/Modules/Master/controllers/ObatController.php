@@ -7,7 +7,9 @@ use View;
 
 class ObatController extends Controller
 {
+
     protected $_module = 'kepegawaian/master/departmen';
+
     public function __construct ()
     {
 
