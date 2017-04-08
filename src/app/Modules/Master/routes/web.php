@@ -87,3 +87,9 @@ Route::post('/barang', function () {
             'recordsFiltered' => 10
         ]);
 });
+
+Route::get('/user/add', function () {
+    return response()->json([
+            'ahay'
+        ]);
+});

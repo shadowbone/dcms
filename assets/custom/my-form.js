@@ -1,7 +1,8 @@
 // Setting Header For Send by ajax
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'DSCM-TOKEN' : 'xtc'
     }
 });
 // Setting Modal Before Shown

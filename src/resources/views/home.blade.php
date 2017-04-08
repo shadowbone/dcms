@@ -389,12 +389,12 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li class="">
-                                <a href="#/home" class="">Home</a>
+                                <a href="#/home" class="">Menu</a>
                                 <b class="arrow"></b>
                             </li>
 
                             <li class="">
-                                <a href="#/about" class="">About</a>
+                                <a href="#/about" class="">User</a>
                                 <b class="arrow"></b>
                             </li>
                             <li class="">

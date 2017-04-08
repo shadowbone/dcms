@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-<div class="row">
+    <div class="row">
       <div class="col-xs-12"> 
         <div class="row">
           <div class="widget-box">
