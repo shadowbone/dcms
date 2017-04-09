@@ -4,7 +4,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title"><i class="ace-icon fa fa-edit"></i>&nbsp;<b>{{ data }}</b></h4>
+            <h4 class="modal-title"><i class="ace-icon fa fa-edit"></i>&nbsp;<b>{{ response.title }}</b></h4>
         </div>
         <div></div>
         <div class="modal-footer">
@@ -12,14 +12,14 @@
           style="margin-left:-11px;"
           @click="savePost()"
           >
-          <i class="fa fa-plus"></i>Tambah</button>
+          <i class="fa fa-plus"></i>&nbsp;Tambah</button>
         </div>
     </div>
 </template>
 <script>
 export default {
   name: 'formInput',
-  props : ['data'],
+  props : ['response'],
   data() {
     return {
       message : 'Form Master User'
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     savePost: function () {
-      alert('oke');
+      alert(this.response);
       // Insert AJAX call here...
     }
   }

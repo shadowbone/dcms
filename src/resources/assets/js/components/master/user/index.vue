@@ -40,7 +40,7 @@
                     <div class="col-sm-3">
                       <button class="btn btn-sm btn-success btn-default test-button" 
                       data-target="#modal-detail-config"
-                      v-modal-show
+                      @click="showModal"
                       style="margin-left:-11px;"
                       :data-url="formadd"
                       >
@@ -55,25 +55,13 @@
                     >
                       <thead>
                         <tr>
-                          <th class="center">
-                            <input type="checkbox" class="ace">
-                          </th>
-                          <th class="detail-col">Details</th>
-                          <th>Domain</th>
-                          <th>Price</th>
-                          <th class="hidden-480">Clicks</th>
-
-                          <th>
-                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                            Update
-                          </th>
-                          <th class="hidden-480">Status</th>
-
-                          <th></th>
+                          <th width="5%">No</th>
+                          <th width="30%">Email</th>
+                          <th>Nama</th>
+                          <th width="20%">Aksi</th>
+                          <th width="20%">Aksi</th>
                         </tr>
                       </thead>
-                      <tbody>
-                      </tbody>
                     </table>
                     </div>
                   </div><!-- /.span -->
@@ -84,26 +72,63 @@
       </div><!-- /.col -->
     </div>
 
-    <form-input :data="data"></form-input>
+    <form-input :response="response" ></form-input>
 </template>
 <script>
 import formInput from './form-input.vue'
 
 export default {
   name: 'userIndex',
-  props : ['data'],
   data : () => {
     return {
       message : 'Master User',
-      source : urlParent + '/master/barang',
-      formadd : urlParent + '/master/user/add'
+      source : urlParent + '/master/user/get-data',
+      formadd : urlParent + '/master/user/add',
+      response : '',
+      show : ''
     }
   },
   mounted(){
-    $('#simple-table').myTabel({});
+    console.log('asasas');
+    var _self = this;
+    $('#simple-table').myTabel({
+        columns: [
+            { data: 'rownum', name: 'rownum' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'action', name: 'action' }
+        ],
+        drawCallback : function () {
+          var $element = $('#simple-table');
+          console.log($element.get(0));
+        }
+    });
   },
   methods : {
+    showModal : function ($e) {
+      var _this = $($e.target);
+      var templete = _this.data('target');
+      var url = _this.data('url');
+      this.getResponse(templete);
+    },
+    getResponse : function (templete) {
+      $('body').modalmanager('loading');
+      axios.get(this.formadd)
+       .then((response) => {
+        $(templete).modal('show');
+        this.response = response.data
+       })
+       .catch((response) => {
 
+       });
+    }
+
+  },
+  watch : {
+    show : function () {
+      alert('oke');
+    }
   },
   components : {
     formInput
