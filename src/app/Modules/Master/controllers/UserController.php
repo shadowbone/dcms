@@ -49,11 +49,13 @@ class UserController extends Controller
         ->make(true);
     }
 
-    public function getAdd()
+    public function getAdd($id = null)
     {
-        return response()->json([
-            'title' => 'Tambah Modal',
-            'nama' => 'Test nama'
-        ]);
+        $data = [
+            'title' => 'Tambah User',
+            'email' => 'sssss@gmail.com',
+            'name' => 'Setyabudi Dwisandi Arifin'
+        ];
+        return response()->json($data);
     }
 }

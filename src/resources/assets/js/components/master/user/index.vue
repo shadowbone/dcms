@@ -16,11 +16,14 @@
                     <div class="col-sm-4">
                       <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
                       <div class="col-md-9">
-                        <input type="text" id="form-field-1" class="form-control">
+                        <input type="text" id="form-field-1" class="form-control" name="email">
                       </div>
                     </div>
                     <div class="col-sm-4">
-                      <button class="btn btn-md btn-white btn-default test-button">
+                      <button 
+                      class="btn btn-md btn-white btn-default"
+                      @click="search"
+                      >
                           <i class="ace-icon fa fa-search"></i>
                             Search
                       </button>
@@ -62,6 +65,7 @@
                           <th width="20%">Aksi</th>
                         </tr>
                       </thead>
+                      <tbody id="body-content"></tbody>
                     </table>
                     </div>
                   </div><!-- /.span -->
@@ -71,11 +75,11 @@
         </div><!-- PAGE CONTENT ENDS -->
       </div><!-- /.col -->
     </div>
-
     <form-input :response="response" ></form-input>
 </template>
 <script>
 import formInput from './form-input.vue'
+import Vue from 'vue/dist/vue.js';
 
 export default {
   name: 'userIndex',
@@ -85,25 +89,34 @@ export default {
       source : urlParent + '/master/user/get-data',
       formadd : urlParent + '/master/user/add',
       response : '',
-      show : ''
+      show : '',
+      datatabels : null
     }
   },
   mounted(){
-    console.log('asasas');
     var _self = this;
-    $('#simple-table').myTabel({
-        columns: [
-            { data: 'rownum', name: 'rownum' },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'action', name: 'action' }
-        ],
-        drawCallback : function () {
-          var $element = $('#simple-table');
-          console.log($element.get(0));
-        }
-    });
+    this.datatabels = $('#simple-table').myTabel({
+              columns: [
+                  { data: 'rownum', name: 'rownum' },
+                  { data: 'name', name: 'name' },
+                  { data: 'email', name: 'email' },
+                  { data: 'created_at', name: 'created_at' },
+                  { data: 'action', name: 'action' }
+              ],
+              drawCallback : function () {
+                var _parent = _self;
+                var $element = $('#simple-table');
+                var vmtemp = Vue.extend({
+                  template: '<tbody>' + $($element.get(0)).find('tbody').html() + '</tbody>',
+                  methods: {
+                    showModal : function($e){
+                      _parent.showModal($e);
+                    }
+                  }
+                });
+                new vmtemp().$mount(document.getElementById('body-content'));
+              }
+          });
   },
   methods : {
     showModal : function ($e) {
@@ -122,13 +135,12 @@ export default {
        .catch((response) => {
 
        });
+    },
+    search : function ($e) {
+      $e.preventDefault();
+      this.datatabels.reload();
     }
 
-  },
-  watch : {
-    show : function () {
-      alert('oke');
-    }
   },
   components : {
     formInput

@@ -24572,7 +24572,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"modal\" id=\"modal-detail-config\" data-backdrop=\"static\" data-width=\"65%\" style=\"z-index: -1\">\n    <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">×</span>\n        </button>\n        <h4 class=\"modal-title\"><i class=\"ace-icon fa fa-edit\"></i>&nbsp;<b>{{ response.title }}</b></h4>\n    </div>\n    <div></div>\n    <div class=\"modal-footer\">\n      <button class=\"btn btn-sm btn-success btn-default\" style=\"margin-left:-11px;\" @click=\"savePost()\">\n      <i class=\"fa fa-plus\"></i>&nbsp;Tambah</button>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"modal\" id=\"modal-detail-config\" data-backdrop=\"static\" data-width=\"65%\" style=\"z-index: -1\">\n    <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">×</span>\n        </button>\n        <h4 class=\"modal-title\"><i class=\"ace-icon fa fa-edit\"></i>&nbsp;<b>{{ response.title }}</b></h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal no-margin form-filter\">\n          <div class=\"form-group\">\n              <div class=\"col-sm-12\">\n                <label class=\"col-sm-1 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                <div class=\"col-md-5\">\n                  <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"email\" v-model=\"response.email\">\n                </div>\n              </div>\n          </div>\n      </form>\n    </div>\n    <div class=\"modal-footer\">\n      <button class=\"btn btn-sm btn-success btn-default\" style=\"margin-left:-11px;\" @click=\"savePost()\">\n      <i class=\"fa fa-plus\"></i>&nbsp;Tambah</button>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -24594,6 +24594,10 @@ var _formInput = require('./form-input.vue');
 
 var _formInput2 = _interopRequireDefault(_formInput);
 
+var _vue = require('vue/dist/vue.js');
+
+var _vue2 = _interopRequireDefault(_vue);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -24604,17 +24608,26 @@ exports.default = {
       source: urlParent + '/master/user/get-data',
       formadd: urlParent + '/master/user/add',
       response: '',
-      show: ''
+      show: '',
+      datatabels: null
     };
   },
   mounted: function mounted() {
-    console.log('asasas');
     var _self = this;
-    $('#simple-table').myTabel({
+    this.datatabels = $('#simple-table').myTabel({
       columns: [{ data: 'rownum', name: 'rownum' }, { data: 'name', name: 'name' }, { data: 'email', name: 'email' }, { data: 'created_at', name: 'created_at' }, { data: 'action', name: 'action' }],
       drawCallback: function drawCallback() {
+        var _parent = _self;
         var $element = $('#simple-table');
-        console.log($element.get(0));
+        var vmtemp = _vue2.default.extend({
+          template: '<tbody>' + $($element.get(0)).find('tbody').html() + '</tbody>',
+          methods: {
+            showModal: function showModal($e) {
+              _parent.showModal($e);
+            }
+          }
+        });
+        new vmtemp().$mount(document.getElementById('body-content'));
       }
     });
   },
@@ -24634,20 +24647,19 @@ exports.default = {
         $(templete).modal('show');
         _this2.response = response.data;
       }).catch(function (response) {});
+    },
+    search: function search($e) {
+      $e.preventDefault();
+      this.datatabels.reload();
     }
 
-  },
-  watch: {
-    show: function show() {
-      alert('oke');
-    }
   },
   components: {
     formInput: _formInput2.default
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <form class=\"form-horizontal no-margin form-filter\">\n                  <div class=\"form-group\">\n                    <div class=\"col-sm-4\">\n                      <label class=\"col-sm-3 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                      <div class=\"col-md-9\">\n                        <input type=\"text\" id=\"form-field-1\" class=\"form-control\">\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <button class=\"btn btn-md btn-white btn-default test-button\">\n                          <i class=\"ace-icon fa fa-search\"></i>\n                            Search\n                      </button>\n                      <button class=\"btn btn-md btn-white btn-default\">\n                          <i class=\"ace-icon fa fa-refresh\"></i>\n                            Refresh\n                      </button>\n                    </div>\n                  </div>\n              </form>\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-md-12\">\n                    <div class=\"col-sm-3\">\n                      <button class=\"btn btn-sm btn-success btn-default test-button\" data-target=\"#modal-detail-config\" @click=\"showModal\" style=\"margin-left:-11px;\" :data-url=\"formadd\">\n                          <i class=\"fa fa-plus\"></i>\n                            Tambah\n                      </button>\n                    </div>\n                    <table id=\"simple-table\" class=\"table  table-bordered table-hover\" data-filter=\".form-filter\" :data-source=\"source\">\n                      <thead>\n                        <tr>\n                          <th width=\"5%\">No</th>\n                          <th width=\"30%\">Email</th>\n                          <th>Nama</th>\n                          <th width=\"20%\">Aksi</th>\n                          <th width=\"20%\">Aksi</th>\n                        </tr>\n                      </thead>\n                    </table>\n                    </div>\n                  </div><!-- /.span -->\n              </div>\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n\n    <form-input :response=\"response\"></form-input>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <form class=\"form-horizontal no-margin form-filter\">\n                  <div class=\"form-group\">\n                    <div class=\"col-sm-4\">\n                      <label class=\"col-sm-3 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                      <div class=\"col-md-9\">\n                        <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"email\">\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <button class=\"btn btn-md btn-white btn-default\" @click=\"search\">\n                          <i class=\"ace-icon fa fa-search\"></i>\n                            Search\n                      </button>\n                      <button class=\"btn btn-md btn-white btn-default\">\n                          <i class=\"ace-icon fa fa-refresh\"></i>\n                            Refresh\n                      </button>\n                    </div>\n                  </div>\n              </form>\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-md-12\">\n                    <div class=\"col-sm-3\">\n                      <button class=\"btn btn-sm btn-success btn-default test-button\" data-target=\"#modal-detail-config\" @click=\"showModal\" style=\"margin-left:-11px;\" :data-url=\"formadd\">\n                          <i class=\"fa fa-plus\"></i>\n                            Tambah\n                      </button>\n                    </div>\n                    <table id=\"simple-table\" class=\"table  table-bordered table-hover\" data-filter=\".form-filter\" :data-source=\"source\">\n                      <thead>\n                        <tr>\n                          <th width=\"5%\">No</th>\n                          <th width=\"30%\">Email</th>\n                          <th>Nama</th>\n                          <th width=\"20%\">Aksi</th>\n                          <th width=\"20%\">Aksi</th>\n                        </tr>\n                      </thead>\n                      <tbody id=\"body-content\"></tbody>\n                    </table>\n                    </div>\n                  </div><!-- /.span -->\n              </div>\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n    <form-input :response=\"response\"></form-input>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -24658,7 +24670,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0e67af61", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./form-input.vue":42,"vue":36,"vue-hot-reload-api":32}],44:[function(require,module,exports){
+},{"./form-input.vue":42,"vue":36,"vue-hot-reload-api":32,"vue/dist/vue.js":35}],44:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue/dist/vue.js');
