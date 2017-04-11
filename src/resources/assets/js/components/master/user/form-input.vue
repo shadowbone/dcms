@@ -7,13 +7,24 @@
             <h4 class="modal-title"><i class="ace-icon fa fa-edit"></i>&nbsp;<b>{{ response.title }}</b></h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal no-margin form-filter" >
+          <form class="form-horizontal no-margin form-filter" 
+          id="form-input" 
+          v-bind:action="response.action">
               <div class="form-group">
                   <div class="col-sm-12">
-                    <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> Email </label>
+                    <label class="col-sm-2 control-label pull-left" for="form-field-1"> Emails <sup>*</sup></label>
                     <div class="col-md-5">
                       <input type="text" id="form-field-1" class="form-control" name="email" 
                       v-model="response.email">
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-12">
+                    <label class="col-sm-2 control-label pull-left" for="form-field-1"> Name <sup>*</sup></label>
+                    <div class="col-md-5">
+                      <input type="text" id="form-field-1" class="form-control" name="name" 
+                      v-model="response.name">
                     </div>
                   </div>
               </div>
@@ -29,9 +40,10 @@
     </div>
 </template>
 <script>
+import { actionSaveTest } from '../../../vuex/actions';
 export default {
   name: 'formInput',
-  props : ['response'],
+  props : ['response','datatabels'],
   data() {
     return {
       message : 'Form Master User'
@@ -39,8 +51,8 @@ export default {
   },
   methods: {
     savePost: function () {
-      alert(this.response);
-      // Insert AJAX call here...
+      actionSaveTest($('#form-input'));
+      this.datatabels.reload();
     }
   }
 }

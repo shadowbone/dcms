@@ -2,6 +2,7 @@
 namespace App\Modules\Master\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\User, 
     Request,
     Datatables,
@@ -35,7 +36,7 @@ class UserController extends Controller
                     'class' => 'btn btn-xs btn-info',
                     'style' => 'margin-right:5px',
                     'data-target' => '#modal-detail-config',
-                    'data-url' => 'http://dcms.app/master/user/add',
+                    'data-url' => 'http://dcms.app/master/user/add/'.$query->id,
                     '@click' => 'showModal'
             ]);
             $html .= Html::decode(Html::link($this->_modules .'/'.$query->id,
@@ -53,9 +54,21 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Tambah User',
-            'email' => 'sssss@gmail.com',
-            'name' => 'Setyabudi Dwisandi Arifin'
+            'email' => '',
+            'name' => '',
+            'action' => $this->_modules . '/proses-simpan/' . $id
         ];
+        $qUser = User::find($id);
+        if (!empty($qUser)) {
+            $data['title'] = 'Edit User';
+            $data['email'] = $qUser->email;
+            $data['name'] = $qUser->name;
+        }
         return response()->json($data);
+    }
+
+    public function postSimpan()
+    {
+        return response()->json([]);
     }
 }

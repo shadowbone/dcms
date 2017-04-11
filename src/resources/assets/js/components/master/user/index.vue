@@ -27,7 +27,10 @@
                           <i class="ace-icon fa fa-search"></i>
                             Search
                       </button>
-                      <button class="btn btn-md btn-white btn-default">
+                      <button 
+                      class="btn btn-md btn-white btn-default"
+                      @click="reset"
+                      >
                           <i class="ace-icon fa fa-refresh"></i>
                             Refresh
                       </button>
@@ -75,11 +78,12 @@
         </div><!-- PAGE CONTENT ENDS -->
       </div><!-- /.col -->
     </div>
-    <form-input :response="response" ></form-input>
+    <form-input :response="response" :datatabels="datatabels"></form-input>
 </template>
 <script>
 import formInput from './form-input.vue'
 import Vue from 'vue/dist/vue.js';
+import { actionSaveTest } from '../../../vuex/actions';
 
 export default {
   name: 'userIndex',
@@ -123,11 +127,11 @@ export default {
       var _this = $($e.target);
       var templete = _this.data('target');
       var url = _this.data('url');
-      this.getResponse(templete);
+      this.getResponse(templete,url);
     },
-    getResponse : function (templete) {
+    getResponse : function (templete,url) {
       $('body').modalmanager('loading');
-      axios.get(this.formadd)
+      axios.get(url)
        .then((response) => {
         $(templete).modal('show');
         this.response = response.data
@@ -139,6 +143,13 @@ export default {
     search : function ($e) {
       $e.preventDefault();
       this.datatabels.reload();
+    },
+    actionSave : function ($e) {
+      $e.preventDefault();
+    },
+    reset : function ($e) {
+      $e.preventDefault();
+      this.datatabels.reset();
     }
 
   },
