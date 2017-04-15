@@ -11,7 +11,9 @@
             </div>
             <br>
             <div class="box-header with-border">
-              <form class="form-horizontal no-margin form-filter" >
+              <form 
+              id="form-user" 
+              class="form-horizontal no-margin form-filter" >
                   <div class="form-group">
                     <div class="col-sm-4">
                       <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
@@ -54,9 +56,9 @@
                             Tambah
                       </button>
                     </div>
-                    <table id="simple-table" 
+                    <table id="user-table" 
                     class="table  table-bordered table-hover" 
-                    data-filter=".form-filter"
+                    data-filter="#form-user"
                     :data-source="source"
                     >
                       <thead>
@@ -99,7 +101,7 @@ export default {
   },
   mounted(){
     var _self = this;
-    this.datatabels = $('#simple-table').myTabel({
+    this.datatabels = $('#user-table').myTabel({
               columns: [
                   { data: 'rownum', name: 'rownum' },
                   { data: 'name', name: 'name' },
@@ -107,11 +109,11 @@ export default {
                   { data: 'created_at', name: 'created_at' },
                   { data: 'action', name: 'action' }
               ],
-              drawCallback : function () {
+              drawCallback : function (settings) {
                 var _parent = _self;
-                var $element = $('#simple-table');
+                var $element = settings.nTBody.outerHTML;
                 var vmtemp = Vue.extend({
-                  template: '<tbody>' + $($element.get(0)).find('tbody').html() + '</tbody>',
+                  template: $element,
                   methods: {
                     showModal : function($e){
                       _parent.showModal($e);

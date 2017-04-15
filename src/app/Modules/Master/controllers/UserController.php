@@ -3,8 +3,8 @@ namespace App\Modules\Master\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use App\User, 
-    Request,
     Datatables,
     Html,
     Form;
@@ -15,7 +15,7 @@ class UserController extends Controller
     
     public function __construct()
     {
-        # code...
+        
     }
 
     public function index() 
@@ -23,11 +23,14 @@ class UserController extends Controller
 
     }
 
-    public function getData(Request $input)
+    public function getData(Request $request)
     {
+        $input = $request->all();
         return Datatables::of(User::data())
-        ->filter(function($query) {
-
+        ->filter(function($query) use ($input) {
+            if (!empty($input['email'])) {
+                $query->where('email','like','%' . $input['email'] . '%');
+            }
         })
         ->addColumn('action', function($query) {
             $html = '<slot>';
@@ -67,8 +70,43 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function postSimpan()
+    public function postSimpan(Request $request, $id)
     {
-        return response()->json([]);
+        $input = $request->all();
+        $this->validate($request,[
+            'email' => 'required|email',
+            'name' => 'required'
+        ],[
+            'email.required' => 'Email Tidak Boleh Kosong',
+            'name.required' => 'Nama Tidak Boleh Kosong',
+            'email.email' => 'Email Tidak Valid'
+        ]);
+        if ($id) {
+            try {
+                $data = [
+                    'email' => $input['email'],
+                    'name' => $input['name']
+                ];
+                $qUser = User::findOrFail($id)->update($data);
+                if ($qUser) {
+                    $message = [
+                        'message' => 'Data Berhasil Terupdate'
+                    ];
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'Terjadi Kesalahan Pada Sistem'
+                ],422);
+            } catch (ModelNotFoundException $e) {
+                return response()->json([
+                    'message' => 'Data Tidak Di Kenali'
+                ],422);
+            }
+        } else {
+            $message = [
+                'message' => 'Data Berhasil Tersimpan'
+            ];
+        }
+        return response()->json($message);
     }
 }

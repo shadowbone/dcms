@@ -389,28 +389,20 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li class="">
-                                <a href="#/home" class="">Menu</a>
+                                <a href="#/menu" class="">Menu</a>
                                 <b class="arrow"></b>
                             </li>
 
                             <li class="">
-                                <a href="#/about" class="">User</a>
+                                <a href="#/user" class="">User</a>
                                 <b class="arrow"></b>
                             </li>
                             <li class="">
-                                <a href="content-slider.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Menu
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="treeview.html">
+                                <a href="#/role">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Role
                                 </a>
+
                                 <b class="arrow"></b>
                             </li>
                         </ul>
@@ -421,22 +413,22 @@
                     <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
                 </div>
             </div>
-<div class="main-content">
-    <div class="main-content-inner">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
-                </li>
-                <li class="active">Dashboard</li>
-            </ul><!-- /.breadcrumb -->
-        </div>
-        <div class="page-content">
-        <div id="app"></div>
-        </div>
-    </div>
-</div><!-- /.main-content -->
+            <div class="main-content">
+                <div class="main-content-inner">
+                    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="ace-icon fa fa-home home-icon"></i>
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="active">Dashboard</li>
+                        </ul><!-- /.breadcrumb -->
+                    </div>
+                    <div class="page-content">
+                    <div id="app"></div>
+                    </div>
+                </div>
+            </div><!-- /.main-content -->
 {!! Html::script('assets/js/scripts.min.js') !!}
 {!! Html::script('assets/js/dcms.min.js') !!}
 {!! Html::script('assets/js/main.js') !!}
