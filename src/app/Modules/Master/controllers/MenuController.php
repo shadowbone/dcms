@@ -45,6 +45,21 @@ class MenuController extends Controller
         return $tmp_menu;
     }
 
+    public function postAdd($id = null)
+    {
+
+    }
+
+    public function postEdit($id = null)
+    {
+
+    }
+
+    public function postDelete($id = null)
+    {
+
+    }
+
     private function _parsing ($id = 0) 
     {
         if (isset($this->_data[$id])) {
@@ -58,15 +73,27 @@ class MenuController extends Controller
                    $html .= '<div class="dd2-content">';
                        $html .= $val['name'];
                        $html .= '<div class="pull-right action-buttons">';
-                            $html .= '<button type="button" class="btn btn-minier btn-success btn-sm" style="margin-right : 5px;">
+                            $html .= '<button type="button" 
+                                    class="btn btn-minier btn-success btn-sm" 
+                                    style="margin-right : 5px;"
+                                    data-url="' . $this->_modul .'/add/'.$val['id'].'"
+                                    v-on:click="addMenu">
                                         <i class="fa fa-plus"></i>
                                       </button>';
-                            $html .= '<button type="button" class="btn btn-minier btn-info btn-sm"
-                                style="margin-right : 5px;">
+                            $html .= '<button type="button" 
+                                    class="btn btn-minier btn-info btn-sm"
+                                    style="margin-right : 5px;"
+                                    data-url="' . $this->_modul .'/edit/'.$val['id'].'"
+                                    v-on:click="editMenu">
                                         <i class="fa fa-edit"></i>
                                       </button>';
-                            $html .= '<button type="button" class="btn btn-minier btn-danger btn-sm"
-                                style="margin-right : 5px;">
+                            $html .= '<button 
+                                    type="button" 
+                                    class="btn btn-minier btn-danger btn-sm"
+                                    style="margin-right : 5px;"
+                                    data-url="' . $this->_modul .'/delete/'.$val['id'].'"
+                                    v-on:click="deleteMenu"
+                                    >
                                         <i class="fa fa-trash"></i>
                                       </button>';
                        $html .= '</div>';
@@ -85,7 +112,7 @@ class MenuController extends Controller
     private function _menu()
     {
         $this->_data = $this->getData();
-        $this->_html = '<div class="dd dd-draghandle" style="max-width:100%!important;">';
+        $this->_html = '<div class="dd dd-draghandle" style="max-width:100%!important;" id="menu-nestable">';
         $this->_html .= '<ol class="dd-list">';
         $this->_html .= $this->_parsing();
         $this->_html .= '</ol>';

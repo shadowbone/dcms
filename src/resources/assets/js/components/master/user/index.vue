@@ -126,7 +126,7 @@ export default {
   },
   methods : {
     showModal : function ($e) {
-      var _this = $($e.target);
+      var _this = $($e.currentTarget);
       var templete = _this.data('target');
       var url = _this.data('url');
       this.getResponse(templete,url);

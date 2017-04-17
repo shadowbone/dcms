@@ -12,7 +12,10 @@ Route::group(['prefix' => 'user'], function () {
  * Master Menu Routing
  */
 Route::group(['prefix' => 'menu'], function () {
-	Route::get('/test-menu','MenuController@index');
+    Route::get('/get-data','MenuController@index');
+    Route::post('/add/{id?}','MenuController@postAdd');
+    Route::post('/edit/{id?}','MenuController@postEdit');
+    Route::post('/delete/{id?}','MenuController@postDelete');
 });
 
 /**

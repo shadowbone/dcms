@@ -26,6 +26,7 @@ gulp.task('scripts', function () {
         'src/resources/assets/js/lib/jquery.dataTables.min.js',
         'src/resources/assets/js/lib/jquery.dataTables.bootstrap.min.js',
         'src/resources/assets/js/lib/jquery.gritter.min.js',
+        'src/resources/assets/js/lib/jquery.nestable.min.js',
         'src/resources/assets/js/lib/ace-elements.min.js',
         'src/resources/assets/js/lib/ace.min.js',
         'assets/bootstrap-modal/js/bootstrap-modal.js',

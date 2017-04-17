@@ -24462,38 +24462,6 @@ return index;
 })));
 
 },{}],39:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  name: 'about',
-  data: function data() {
-    return {
-      message: 'About',
-      source: urlParent + '/master/barang'
-    };
-  },
-  mounted: function mounted() {
-    $('#simple-table').myTabel({});
-  },
-
-  methods: {}
-};
-if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div id=\"about\">\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <form class=\"form-horizontal no-margin form-filter\">\n                  <div class=\"form-group\">\n                    <div class=\"col-sm-4\">\n                      <label class=\"col-sm-3 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                      <div class=\"col-md-9\">\n                        <input type=\"text\" id=\"form-field-1\" class=\"form-control\">\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <button class=\"btn btn-md btn-white btn-default test-button\">\n                          <i class=\"ace-icon fa fa-search\"></i>\n                            Search\n                      </button>\n                      <button class=\"btn btn-md btn-white btn-default\">\n                          <i class=\"ace-icon fa fa-refresh\"></i>\n                            Refresh\n                      </button>\n                    </div>\n                  </div>\n              </form>\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-md-12\">\n                    <div class=\"col-sm-3\">\n                      <button class=\"btn btn-sm btn-success btn-default test-button\" data-toggle=\"modal\" data-target=\"#myModal\" style=\"margin-left:-11px;\">\n                          <i class=\"fa fa-plus\"></i>\n                            Tambah\n                      </button>\n                    </div>\n                    <table id=\"simple-table\" class=\"table  table-bordered table-hover\" data-filter=\".form-filter\" :data-source=\"source\">\n                      <thead>\n                        <tr>\n                          <th class=\"center\">\n                            <input type=\"checkbox\" class=\"ace\">\n                          </th>\n                          <th class=\"detail-col\">Details</th>\n                          <th>Domain</th>\n                          <th>Price</th>\n                          <th class=\"hidden-480\">Clicks</th>\n\n                          <th>\n                            <i class=\"ace-icon fa fa-clock-o bigger-110 hidden-480\"></i>\n                            Update\n                          </th>\n                          <th class=\"hidden-480\">Status</th>\n\n                          <th></th>\n                        </tr>\n                      </thead>\n                      <tbody>\n                      </tbody>\n                    </table>\n                    </div>\n                  </div><!-- /.span -->\n              </div>\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n\n  </div>\n</div>"
-if (module.hot) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  if (!module.hot.data) {
-    hotAPI.createRecord("_v-8822991a", module.exports)
-  } else {
-    hotAPI.update("_v-8822991a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-  }
-})()}
-},{"vue":36,"vue-hot-reload-api":32}],40:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("\n.slide-fade-enter-active {\n  -webkit-transition: all .0s ease;\n  transition: all .0s ease;\n}\n\n")
 'use strict';
@@ -24520,36 +24488,175 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-984b88f2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":36,"vue-hot-reload-api":32,"vueify/lib/insert-css":37}],41:[function(require,module,exports){
+},{"vue":36,"vue-hot-reload-api":32,"vueify/lib/insert-css":37}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _actions = require('../../../vuex/actions');
+
 exports.default = {
-  name: 'home',
+  name: 'formInput',
+  props: ['response', 'datatabels'],
   data: function data() {
     return {
-      message: 'Halaman Home'
+      message: 'Form Master User'
     };
   },
-  ready: function ready() {
-    alert('oke');
+
+  methods: {
+    savePost: function savePost() {
+      (0, _actions.actionSaveTest)($('#form-input'));
+      this.datatabels.reload();
+    }
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div id=\"home\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\"> \n      <div class=\"row\">\n        <div class=\"widget-box\">\n          <div class=\"widget-header\">\n            <h4 class=\"widget-title\">\n            <i class=\"ace-icon fa fa-database\"></i>\n              Home\n            </h4>\n          </div>\n          <br>\n          <div class=\"box-header with-border\">\n            <form class=\"form-horizontal no-margin form-filter\">\n            </form>\n          </div>\n          <div class=\"hr hr-dotted\"></div>\n          <div>\n          </div>\n        </div>      \n      </div><!-- PAGE CONTENT ENDS -->\n    </div><!-- /.col -->\n  </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"modal\" id=\"modal-detail-config\" data-backdrop=\"static\" data-width=\"65%\" style=\"z-index: -1\">\n    <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">×</span>\n        </button>\n        <h4 class=\"modal-title\"><i class=\"ace-icon fa fa-edit\"></i>&nbsp;<b>{{ response.title }}</b></h4>\n    </div>\n    <div class=\"modal-body\">\n      <form class=\"form-horizontal no-margin form-filter\" id=\"form-input\" v-bind:action=\"response.action\">\n          <div class=\"form-group\">\n              <div class=\"col-sm-12\">\n                <label class=\"col-sm-2 control-label pull-left\" for=\"form-field-1\"> Emails <sup>*</sup></label>\n                <div class=\"col-md-5\">\n                  <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"email\" v-model=\"response.email\">\n                </div>\n              </div>\n          </div>\n          <div class=\"form-group\">\n              <div class=\"col-sm-12\">\n                <label class=\"col-sm-2 control-label pull-left\" for=\"form-field-1\"> Name <sup>*</sup></label>\n                <div class=\"col-md-5\">\n                  <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"name\" v-model=\"response.name\">\n                </div>\n              </div>\n          </div>\n      </form>\n    </div>\n    <div class=\"modal-footer\">\n      <button class=\"btn btn-sm btn-success btn-default\" style=\"margin-left:-11px;\" @click=\"savePost()\">\n      <i class=\"fa fa-plus\"></i>&nbsp;Tambah</button>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-67770269", module.exports)
+    hotAPI.createRecord("_v-3d3ad0ee", module.exports)
   } else {
-    hotAPI.update("_v-67770269", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-3d3ad0ee", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":36,"vue-hot-reload-api":32}],42:[function(require,module,exports){
+},{"../../../vuex/actions":47,"vue":36,"vue-hot-reload-api":32}],41:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _formInput = require('./form-input.vue');
+
+var _formInput2 = _interopRequireDefault(_formInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'menuIndex',
+  data: function data() {
+    return {
+      message: 'Master Menu',
+      formadd: urlParent + '/master/menu/add',
+      get: urlParent + '/master/menu/get-data',
+      response: ''
+    };
+  },
+  mounted: function mounted() {
+    this.getResponse();
+    $('.dd-handle a').on('mousedown', function (e) {
+      e.stopPropagation();
+    });
+    $('[data-rel="tooltip"]').tooltip();
+  },
+
+  methods: {
+    getResponse: function getResponse() {
+      axios.get(this.get).then(function (response) {
+        var ext = _Vue.extend({
+          template: response.data.data,
+          methods: {
+            addMenu: function addMenu($e) {
+              var target = $($e.currentTarget);
+            },
+            editMenu: function editMenu() {
+              var target = $($e.currentTarget);
+            },
+            deleteMenu: function deleteMenu() {
+              var target = $($e.currentTarget);
+            }
+          }
+        });
+        new ext().$mount(document.getElementById('menu-nestable'));
+        $('.dd').nestable();
+      }).catch(function (response) {});
+    },
+    showModal: function showModal($e) {
+      var _this2 = this;
+
+      var _this = $($e.currentTarget);
+      var templete = _this.data('target');
+      var url = _this.data('url');
+      $('body').modalmanager('loading');
+      axios.get(url).then(function (response) {
+        $(templete).modal('show');
+        _this2.response = response.data;
+      }).catch(function (response) {});
+    }
+  },
+  components: {
+    formInput: _formInput2.default
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-sm-3\">\n                    <button class=\"btn btn-sm btn-success btn-default test-button\" data-target=\"#modal-detail-config\" @click=\"showModal\" :data-url=\"formadd\">\n                        <i class=\"fa fa-plus\"></i>\n                          Tambah\n                    </button>\n                  </div>\n                </div>\n                <hr>\n                <div class=\"row\">\n                  <div class=\"col-xs-12\">\n                  <div id=\"menu-nestable\"></div>\n                  </div>\n                </div>\n\n              </div>\n            </div>\n        </div>\n      </div>\n    </div>\n    <form-input :response=\"response\"></form-input>\n</div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-0f882016", module.exports)
+  } else {
+    hotAPI.update("_v-0f882016", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"./form-input.vue":40,"vue":36,"vue-hot-reload-api":32}],42:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    name: 'roleIndex',
+    data: function data() {
+        return {
+            message: 'Master Roles'
+        };
+    }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n</div>"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-5745d6bd", module.exports)
+  } else {
+    hotAPI.update("_v-5745d6bd", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":36,"vue-hot-reload-api":32}],43:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.masterRoutes = undefined;
+
+var _index = require('./user/index.vue');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('./menu/index.vue');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = require('./roles/index.vue');
+
+var _index6 = _interopRequireDefault(_index5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var masterRoutes = exports.masterRoutes = [{ path: '/user', component: _index2.default }, { path: '/menu', component: _index4.default }, { path: '/role', component: _index6.default }];
+
+},{"./menu/index.vue":41,"./roles/index.vue":42,"./user/index.vue":45}],44:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24586,7 +24693,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-204c55fc", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../../vuex/actions":45,"vue":36,"vue-hot-reload-api":32}],43:[function(require,module,exports){
+},{"../../../vuex/actions":47,"vue":36,"vue-hot-reload-api":32}],45:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24619,13 +24726,13 @@ exports.default = {
   },
   mounted: function mounted() {
     var _self = this;
-    this.datatabels = $('#simple-table').myTabel({
+    this.datatabels = $('#user-table').myTabel({
       columns: [{ data: 'rownum', name: 'rownum' }, { data: 'name', name: 'name' }, { data: 'email', name: 'email' }, { data: 'created_at', name: 'created_at' }, { data: 'action', name: 'action' }],
-      drawCallback: function drawCallback() {
+      drawCallback: function drawCallback(settings) {
         var _parent = _self;
-        var $element = $('#simple-table');
+        var $element = settings.nTBody.outerHTML;
         var vmtemp = _vue2.default.extend({
-          template: '<tbody>' + $($element.get(0)).find('tbody').html() + '</tbody>',
+          template: $element,
           methods: {
             showModal: function showModal($e) {
               _parent.showModal($e);
@@ -24639,7 +24746,7 @@ exports.default = {
 
   methods: {
     showModal: function showModal($e) {
-      var _this = $($e.target);
+      var _this = $($e.currentTarget);
       var templete = _this.data('target');
       var url = _this.data('url');
       this.getResponse(templete, url);
@@ -24671,7 +24778,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <form class=\"form-horizontal no-margin form-filter\">\n                  <div class=\"form-group\">\n                    <div class=\"col-sm-4\">\n                      <label class=\"col-sm-3 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                      <div class=\"col-md-9\">\n                        <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"email\">\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <button class=\"btn btn-md btn-white btn-default\" @click=\"search\">\n                          <i class=\"ace-icon fa fa-search\"></i>\n                            Search\n                      </button>\n                      <button class=\"btn btn-md btn-white btn-default\" @click=\"reset\">\n                          <i class=\"ace-icon fa fa-refresh\"></i>\n                            Refresh\n                      </button>\n                    </div>\n                  </div>\n              </form>\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-md-12\">\n                    <div class=\"col-sm-3\">\n                      <button class=\"btn btn-sm btn-success btn-default test-button\" data-target=\"#modal-detail-config\" @click=\"showModal\" style=\"margin-left:-11px;\" :data-url=\"formadd\">\n                          <i class=\"fa fa-plus\"></i>\n                            Tambah\n                      </button>\n                    </div>\n                    <table id=\"simple-table\" class=\"table  table-bordered table-hover\" data-filter=\".form-filter\" :data-source=\"source\">\n                      <thead>\n                        <tr>\n                          <th width=\"5%\">No</th>\n                          <th width=\"30%\">Email</th>\n                          <th>Nama</th>\n                          <th width=\"20%\">Aksi</th>\n                          <th width=\"20%\">Aksi</th>\n                        </tr>\n                      </thead>\n                      <tbody id=\"body-content\"></tbody>\n                    </table>\n                    </div>\n                  </div><!-- /.span -->\n              </div>\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n    <form-input :response=\"response\" :datatabels=\"datatabels\"></form-input>\n</div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n    <div class=\"row\">\n      <div class=\"col-xs-12\"> \n        <div class=\"row\">\n          <div class=\"widget-box\">\n            <div class=\"widget-header\">\n              <h4 class=\"widget-title\">\n              <i class=\"ace-icon fa fa-database\"></i>\n                {{ message }}\n              </h4>\n            </div>\n            <br>\n            <div class=\"box-header with-border\">\n              <form id=\"form-user\" class=\"form-horizontal no-margin form-filter\">\n                  <div class=\"form-group\">\n                    <div class=\"col-sm-4\">\n                      <label class=\"col-sm-3 control-label no-padding-right\" for=\"form-field-1\"> Email </label>\n                      <div class=\"col-md-9\">\n                        <input type=\"text\" id=\"form-field-1\" class=\"form-control\" name=\"email\">\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <button class=\"btn btn-md btn-white btn-default\" @click=\"search\">\n                          <i class=\"ace-icon fa fa-search\"></i>\n                            Search\n                      </button>\n                      <button class=\"btn btn-md btn-white btn-default\" @click=\"reset\">\n                          <i class=\"ace-icon fa fa-refresh\"></i>\n                            Refresh\n                      </button>\n                    </div>\n                  </div>\n              </form>\n            </div>\n            <div class=\"hr hr-dotted\"></div>\n            <!-- <div class=\"widget-body\"> -->\n              <div class=\"widget-main\">\n                <div class=\"row\">\n                  <div class=\"col-md-12\">\n                    <div class=\"col-sm-3\">\n                      <button class=\"btn btn-sm btn-success btn-default test-button\" data-target=\"#modal-detail-config\" @click=\"showModal\" style=\"margin-left:-11px;\" :data-url=\"formadd\">\n                          <i class=\"fa fa-plus\"></i>\n                            Tambah\n                      </button>\n                    </div>\n                    <table id=\"user-table\" class=\"table  table-bordered table-hover\" data-filter=\"#form-user\" :data-source=\"source\">\n                      <thead>\n                        <tr>\n                          <th width=\"5%\">No</th>\n                          <th width=\"30%\">Email</th>\n                          <th>Nama</th>\n                          <th width=\"20%\">Aksi</th>\n                          <th width=\"20%\">Aksi</th>\n                        </tr>\n                      </thead>\n                      <tbody id=\"body-content\"></tbody>\n                    </table>\n                    </div>\n                  </div><!-- /.span -->\n              </div>\n            <!-- </div> -->\n          <!-- </div>       -->\n        </div><!-- PAGE CONTENT ENDS -->\n      </div><!-- /.col -->\n    </div>\n    <form-input :response=\"response\" :datatabels=\"datatabels\"></form-input>\n</div>"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -24682,7 +24789,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-0e67af61", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"../../../vuex/actions":45,"./form-input.vue":42,"vue":36,"vue-hot-reload-api":32,"vue/dist/vue.js":35}],44:[function(require,module,exports){
+},{"../../../vuex/actions":47,"./form-input.vue":44,"vue":36,"vue-hot-reload-api":32,"vue/dist/vue.js":35}],46:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue/dist/vue.js');
@@ -24705,71 +24812,36 @@ var _App = require('./components/App.vue');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _About = require('./components/About.vue');
-
-var _About2 = _interopRequireDefault(_About);
-
-var _Home = require('./components/Home.vue');
-
-var _Home2 = _interopRequireDefault(_Home);
-
-var _index = require('./components/master/user/index.vue');
-
-var _index2 = _interopRequireDefault(_index);
+var _routes = require('./components/master/routes.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+_vue2.default.use(_vueResource2.default);
+_vue2.default.use(_vueRouter2.default);
 window.axios = require('axios');
 window.urlParent = window.location.origin;
 window.axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'Accept': 'application/json'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json'
 };
 window._Vue = _vue2.default;
 
-
-_vue2.default.use(_vueResource2.default);
-_vue2.default.use(_vueRouter2.default);
-/**
- * Cutom Directive Modal
- * -untuk Global remote modal
- */
-_vue2.default.directive('modal-show', {
-  twoWay: true,
-  bind: function bind($el, binding, vnode) {
-    $el.addEventListener('click', function () {
-      $el.dataset.apalah = '{{ message }}';
-      var _this = $($el);
-      var templete = _this.data('target');
-      var url = _this.data('url');
-      $('body').modalmanager('loading');
-      console.log(this.response);
-      _vue2.default.set(binding, 'response', {
-        name: 'Setyabudi',
-        kelas: 'MI-14'
-      });
-      axios.get(url).then(function (response) {
-        $(templete).modal('show');
-      }).catch(function (response) {});
-    });
-  }
-});
 var router = new _vueRouter2.default({
-  hashbang: false,
-  history: true,
-  linkActiveClass: 'active-class',
-  routes: [{ path: '/about', component: _index2.default }, { path: '/home', component: _Home2.default }]
+    hashbang: false,
+    history: true,
+    linkActiveClass: 'active-class',
+    routes: _routes.masterRoutes
 });
 
 /* Bootstrap routes to the main component */
 new _vue2.default({
-  el: '#app',
-  router: router,
-  template: '<App/>',
-  components: { App: _App2.default }
+    el: '#app',
+    router: router,
+    template: '<App/>',
+    components: { App: _App2.default }
 });
 
-},{"./components/About.vue":39,"./components/App.vue":40,"./components/Home.vue":41,"./components/master/user/index.vue":43,"./vuex/store":46,"axios":1,"vue-resource":33,"vue-router":34,"vue/dist/vue.js":35}],45:[function(require,module,exports){
+},{"./components/App.vue":39,"./components/master/routes.js":43,"./vuex/store":48,"axios":1,"vue-resource":33,"vue-router":34,"vue/dist/vue.js":35}],47:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24817,7 +24889,7 @@ var actionSaveTest = exports.actionSaveTest = function actionSaveTest($e, conten
     });
 };
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24899,6 +24971,6 @@ exports.default = new _vuex2.default.Store({
     }
 });
 
-},{"vue":36,"vuex":38}]},{},[44]);
+},{"vue":36,"vuex":38}]},{},[46]);
 
 //# sourceMappingURL=main.js.map

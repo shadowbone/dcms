@@ -16,7 +16,7 @@
                   <div class="col-sm-3">
                     <button class="btn btn-sm btn-success btn-default test-button" 
                     data-target="#modal-detail-config"
-                    @click="getResponse"
+                    @click="showModal"
                     :data-url="formadd"
                     >
                         <i class="fa fa-plus"></i>
@@ -33,41 +33,73 @@
 
               </div>
             </div>
-            <!-- <div class="widget-body"> -->
-            <!-- </div> -->
-          <!-- </div>       -->
-        </div><!-- PAGE CONTENT ENDS -->
-      </div><!-- /.col -->
+        </div>
+      </div>
     </div>
+    <form-input :response="response"></form-input>
 </template>
 
 <script>
-    export default {
-        name : 'menuIndex',
-        data : () => {
-            return {
-                message : 'Master Menu',
-                formadd : urlParent + '/master/menu/test-menu'
-            }
-        },
-        mounted(){
-          this.getResponse();
-          $('.dd-handle a').on('mousedown', function(e){
-            e.stopPropagation();
-          });
-          $('[data-rel="tooltip"]').tooltip();
-        },
-        methods : {
-          getResponse : function () {
-            axios.get(this.formadd)
-             .then((response) => {
-              $('#menu-nestable').html(response.data.data);
-              $('.dd').nestable();
-             })
-             .catch((response) => {
-
-             });
-          }
+import formInput from './form-input.vue'
+export default {
+    name : 'menuIndex',
+    data : () => {
+        return {
+            message : 'Master Menu',
+            formadd : urlParent + '/master/menu/add',
+            get : urlParent + '/master/menu/get-data',
+            response : ''
         }
+    },
+    mounted(){
+      this.getResponse();
+      $('.dd-handle a').on('mousedown', function(e){
+        e.stopPropagation();
+      });
+      $('[data-rel="tooltip"]').tooltip();
+    },
+    methods : {
+      getResponse : function () {
+        axios.get(this.get)
+         .then((response) => {
+          var ext = _Vue.extend({
+            template : response.data.data,
+            methods : {
+              addMenu : function ($e) {
+                var target = $($e.currentTarget);
+              },
+              editMenu : function () {
+                var target = $($e.currentTarget);
+              },
+              deleteMenu : function () {
+                var target = $($e.currentTarget);
+              }
+            }
+          });
+          new ext().$mount(document.getElementById('menu-nestable'));
+          $('.dd').nestable();
+         })
+         .catch((response) => {
+
+         });
+      },
+      showModal : function ($e) {
+        var _this = $($e.currentTarget);
+        var templete = _this.data('target');
+        var url = _this.data('url');
+        $('body').modalmanager('loading');
+        axios.get(url)
+         .then((response) => {
+          $(templete).modal('show');
+          this.response = response.data
+         })
+         .catch((response) => {
+
+         });
+      },
+    },
+    components : {
+      formInput
     }
+}
 </script>

@@ -2,6 +2,10 @@ import Vue from 'vue/dist/vue.js';
 import store from './vuex/store';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import App from './components/App.vue';
+import {masterRoutes} from './components/master/routes.js';
+Vue.use(VueResource);
+Vue.use(VueRouter);
 window.axios = require('axios');
 window.urlParent = window.location.origin;
 window.axios.defaults.headers.common = {
@@ -9,11 +13,6 @@ window.axios.defaults.headers.common = {
     'Accept' : 'application/json'
 };
 window._Vue = Vue;
-import App from './components/App.vue';
-import {masterRoutes} from './components/master/routes.js';
-
-Vue.use(VueResource);
-Vue.use(VueRouter);
 
 var router = new VueRouter({
   hashbang: false,
